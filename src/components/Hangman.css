@@ -1,0 +1,11 @@
+.Hangman {
+  width: 50%;
+  margin-top: 50px;
+  text-align: center;
+}
+.text.center {
+  text-align: center;
+}
+p {
+  text-align: center;
+}
