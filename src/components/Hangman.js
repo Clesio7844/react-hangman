@@ -53,9 +53,26 @@ class Hangman extends Component {
     ));
   }
 
+  resetButton = () => {
+    this.setState({
+      mistake: 0,
+      guessed: new Set([]),
+      answer: randomWord()
+    });
+  };
+
   render() {
     const gameOver = this.state.mistake >= this.props.maxWrong;
+    const isWinner = this.guessedWord().join('') === this.state.answer;
     let gameStat = this.generateButtons();
+    if (isWinner) {
+      gameStat = 'You Won!!!';
+    }
+
+    if (gameOver) {
+      gameStat = 'You Lost!!!';
+    }
+
     return (
       <div className='Hangman container'>
         <h1 className='text.center'>Hangman</h1>
@@ -68,6 +85,9 @@ class Hangman extends Component {
         <p>Guess the Programming Languages: </p>
         <p>{!gameOver ? this.guessedWord() : this.state.answer}</p>
         <p>{gameStat}</p>
+        <button className='btn btn-info' onClick={this.resetButton}>
+          Reset
+        </button>
       </div>
     );
   }
